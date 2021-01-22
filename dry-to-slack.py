@@ -26,13 +26,13 @@ from __main__ import *
 GPIO.setmode(GPIO.BCM)
 
 # Define the GPIO pin that the moisture sensor (D0 on the sensor) is connected to:
-channel = 15
+channel = 22
 
 # Set the GPIO pin above as an input and set the internal pull-up resistor down:
 GPIO.setup(channel, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 # Slack webhook - get this from https://api.slack.com/custom-integrations/incoming-webhooks
-webhook_url = ""
+webhook_url = "url"
 
 # This is the function that calls the Slack webhook to notify you:
 def postToSlack():
@@ -51,17 +51,17 @@ def postToSlackMoist():
 # Run the code in an infinite loop. If the soil is dry, a Slack notification is triggered:
 while True:
     if GPIO.input(channel)==False:
-        #print('Soil is moist')     # Uncomment to print console commands
+        print('Soil is moist')     # Uncomment to print console commands
 	print(GPIO.input(channel))
         postToSlackMoist()
 	message1="Plant is Happy"
 	message2="Do Not Water"
 	import hello
-        time.sleep(43200)             # Sleep for 15 minutes (900 seconds)
+        time.sleep(5)             # Sleep for 15 minutes (900 seconds)
     else:
-        #print('Soil is dry!')      # Uncomment to print console commands
+        print('Soil is dry!')      # Uncomment to print console commands
 	message1="Plant is Thirsty"
 	message2="Water Plant"
 	print(GPIO.input(channel))        
- 	postToSlack()               # Trigger the Slack webhook notification
-        time.sleep(18000)            # Sleep for 45 minutes (2700 seconds)
+ 	#postToSlack()               # Trigger the Slack webhook notification
+        time.sleep(5)            # Sleep for 45 minutes (2700 seconds)
