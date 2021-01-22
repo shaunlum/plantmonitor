@@ -32,7 +32,7 @@ channel = 15
 GPIO.setup(channel, GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
 
 # Slack webhook - get this from https://api.slack.com/custom-integrations/incoming-webhooks
-webhook_url = "https://hooks.slack.com/services/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"
+webhook_url = ""
 
 # This is the function that calls the Slack webhook to notify you:
 def postToSlack():
